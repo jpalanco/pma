@@ -16,7 +16,6 @@
 #include "pma.h"
 #include "regpx.h"
 #include "strutil.h"
-#include "memutil.h"
 
 /*****************************************************************************/
 /* Constants Declaration                                                     */
@@ -300,7 +299,7 @@ void init_pma_results(PMA_RESULTS* result){
 }
 
 void free_pma_results(PMA_RESULTS* result){
-	free_is_not_null(result->summary);
+	free(result->summary);
 }
 
 
@@ -1385,14 +1384,14 @@ void init_pdf_wedge_result(PDF_SLICE_RESULT* lpResult){
 }
 
 void free_pdf_wedge_result(PDF_SLICE_RESULT* lpResult){
-	free_is_not_null(lpResult->password);
-	free_is_not_null(lpResult->encrypt_obj);
-	free_is_not_null(lpResult->encrypt_gen);
-	free_is_not_null(lpResult->padding);
-	free_is_not_null(lpResult->u);
-	free_is_not_null(lpResult->o);
-	free_is_not_null(lpResult->o_orig);
-	free_is_not_null(lpResult->id);
+	free(lpResult->password);
+	free(lpResult->encrypt_obj);
+	free(lpResult->encrypt_gen);
+	free(lpResult->padding);
+	free(lpResult->u);
+	free(lpResult->o);
+	free(lpResult->o_orig);
+	free(lpResult->id);
 	free_object_data_node(lpResult->object_head);
 }
 
@@ -1464,17 +1463,17 @@ void free_object_data_node(LPOBJECT_DATA node){
 	if(node == NULL)
 		return;
 
-	free_is_not_null(node->object_id);
-	free_is_not_null(node->object);
-	free_is_not_null(node->obj_hex);
-	free_is_not_null(node->gen_hex);
-	free_is_not_null(node->parameters);
-	free_is_not_null(node->decoded);
-	free_is_not_null(node->otype);
-	free_is_not_null(node->atype);
-	free_is_not_null(node->decrypt_part);
-	free_is_not_null(node->md5_raw);
-	free_is_not_null(node->stream);
+	free(node->object_id);
+	free(node->object);
+	free(node->obj_hex);
+	free(node->gen_hex);
+	free(node->parameters);
+	free(node->decoded);
+	free(node->otype);
+	free(node->atype);
+	free(node->decrypt_part);
+	free(node->md5_raw);
+	free(node->stream);
 
 	free_object_data_node(node->next);
 	free(node);
@@ -1502,13 +1501,13 @@ void free_object_stm_node(LPOBJECT_STM_RESULT node){
 	if(node == NULL)
 		return;
 
-	free_is_not_null(node->ident);
-	free_is_not_null(node->object);
-	free_is_not_null(node->obj_id);
-	free_is_not_null(node->dup_id);
-	free_is_not_null(node->parameters);
-	free_is_not_null(node->objstm);
-	free_is_not_null(node->datal);
+	free(node->ident);
+	free(node->object);
+	free(node->obj_id);
+	free(node->dup_id);
+	free(node->parameters);
+	free(node->objstm);
+	free(node->datal);
 
 	free_object_stm_node(node->next);
 
@@ -1609,8 +1608,8 @@ LPORDER create_order(){
 }
 
 void free_order(LPORDER pOrder){
-	free_is_not_null(pOrder->otype);
-	free_is_not_null(pOrder->parameters);
+	free(pOrder->otype);
+	free(pOrder->parameters);
 }
 
 
