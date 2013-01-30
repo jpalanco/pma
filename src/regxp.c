@@ -2,7 +2,6 @@
 //#include <stdio.h>
 //#include <string.h>
 #include "regpx.h"
-#include "memutil.h"
 
 #define PCRE_COMP_DEF_OPT	PCRE_CASELESS|PCRE_DOTALL
 #define PCRE_EXEC_DEF_OPT	PCRE_NO_UTF8_CHECK
@@ -305,7 +304,7 @@ void free_regex_match_all_info(LPPCRE_INFO info){
 	if(info == NULL)
 		return;
 
-	free_is_not_null(info->match);
+	free(info->match);
 	free_regex_match_all_info(info->next);
 
 	free(info);
